@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#5b36f2">
+  <title>Arena do Raciocínio Lógico</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="brand">
+      <div class="logo">🧠</div>
+      <div><h1>Arena do Raciocínio Lógico</h1><p>Desafio multiplayer • primeira aula</p></div>
+    </header>
+
+    <section id="loading" class="card center hidden"><div class="spinner"></div><p>Conectando à sala...</p></section>
+
+    <section id="student-home" class="card hero hidden">
+      <span class="eyebrow">ENTRAR NA COMPETIÇÃO</span>
+      <h2>Pronto para o desafio?</h2>
+      <p>Digite o PIN mostrado pelo professor e seu nome.</p>
+      <form id="join-form" class="form-stack">
+        <label>PIN DA SALA<input id="join-pin" inputmode="numeric" maxlength="6" placeholder="000000" autocomplete="off" required></label>
+        <label>SEU NOME<input id="join-name" maxlength="24" placeholder="Digite seu nome" autocomplete="name" required></label>
+        <button class="primary big" type="submit">ENTRAR 🚀</button>
+      </form>
+      <p id="join-error" class="error hidden"></p>
+      <a class="teacher-link" href="?professor=1">Sou professor →</a>
+    </section>
+
+    <section id="teacher-home" class="card hero hidden">
+      <span class="eyebrow">PAINEL DO PROFESSOR</span>
+      <h2>Crie uma sala para a turma</h2>
+      <p>Os alunos entram pelo celular usando um PIN de 6 dígitos.</p>
+      <button id="create-room" class="primary big">CRIAR SALA 🎮</button>
+      <p id="teacher-error" class="error hidden"></p>
+      <a class="teacher-link" href="./">Voltar para entrada dos alunos</a>
+    </section>
+
+    <section id="lobby" class="hidden">
+      <div class="card room-head">
+        <div><span class="eyebrow">SALA ABERTA</span><h2>PIN <strong id="lobby-pin">------</strong></h2></div>
+        <div class="count"><b id="player-count">0</b><span>jogadores</span></div>
+      </div>
+      <div id="teacher-lobby" class="card hidden">
+        <h3>👥 Alunos conectados</h3>
+        <div id="players-list" class="chips"></div>
+        <button id="start-game" class="primary big" disabled>INICIAR DESAFIO ▶</button>
+        <p class="hint">Link dos alunos: <span id="student-url"></span></p>
+      </div>
+      <div id="student-lobby" class="card center hidden">
+        <div class="big-icon">✅</div><h2>Você entrou!</h2><p id="student-welcome"></p><p class="pulse-text">Aguardando o professor iniciar...</p>
+      </div>
+    </section>
+
+    <section id="question-screen" class="hidden">
+      <div class="statusbar card">
+        <div><span id="q-number">Questão 1/10</span><b id="q-category">Lógica</b></div>
+        <div class="timer"><span id="timer">20</span><small>seg</small></div>
+      </div>
+      <div class="card question-card">
+        <h2 id="q-text"></h2><p id="q-context"></p>
+        <div id="answer-grid" class="answer-grid"></div>
+        <div id="submitted" class="submitted hidden">✓ Resposta enviada! Aguarde o tempo terminar.</div>
+      </div>
+      <div id="teacher-progress" class="card teacher-progress hidden"><b id="answers-count">0 de 0</b><span>respostas recebidas</span><div class="bar"><i id="answers-bar"></i></div></div>
+    </section>
+
+    <section id="leaderboard-screen" class="hidden">
+      <div class="card review"><span class="eyebrow">RESULTADO DA RODADA</span><h2 id="review-answer"></h2><p id="review-explanation"></p></div>
+      <div class="card"><h3>🏆 Ranking</h3><div id="leaderboard" class="ranking"></div></div>
+      <div id="student-score" class="card score-card hidden"></div>
+      <button id="next-question" class="primary big hidden">PRÓXIMA QUESTÃO →</button>
+    </section>
+
+    <section id="final-screen" class="hidden">
+      <div class="card podium-card center"><span class="eyebrow">MISSÃO CONCLUÍDA</span><h2>🏆 Pódio Final</h2><div id="podium" class="podium"></div></div>
+      <div class="card"><h3>Classificação final</h3><div id="final-ranking" class="ranking"></div></div>
+      <button id="new-game" class="secondary big">NOVA PARTIDA</button>
+    </section>
+  </main>
+  <div id="toast" class="toast hidden"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
